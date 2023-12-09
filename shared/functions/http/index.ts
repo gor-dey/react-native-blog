@@ -1,10 +1,9 @@
 import { $axios } from '@shared/axios'
 import { ApiResponse, Id } from '@shared/types'
-
-const url = 'https://jsonplaceholder.typicode.com/posts'
+import { apiUrl } from '@shared/utils'
 
 export const getAxiosPosts = async (): Promise<ApiResponse> =>
-  await $axios.get(url)
+  await $axios.get(apiUrl)
 
 export const getAxiosPostById = async (id: Id): Promise<ApiResponse> =>
-  await $axios.get(url + '/' + id)
+  await $axios.get(apiUrl + '/' + id)

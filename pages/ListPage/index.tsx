@@ -1,5 +1,5 @@
-import { PostsListWidget } from '@widgets'
+import { PostsList } from '@widgets'
 
 export const ListPage = () => {
-  return <PostsListWidget />
+  return <PostsList />
 }

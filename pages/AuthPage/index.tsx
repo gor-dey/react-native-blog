@@ -1,4 +1,4 @@
-import { redColor } from '@shared/cssConstants'
+import { defaultPadding, redColor } from '@shared/cssConstants'
 import { AuthWidget } from '@widgets'
 import { AuthTitle } from 'entities/AuthTitle'
 import { View } from 'react-native'
@@ -10,7 +10,8 @@ const Wrapper = styled(View)`
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
-  padding: 10px;
+  padding-left: ${defaultPadding};
+  padding-right: ${defaultPadding};
 `
 
 export const AuthPage = () => {

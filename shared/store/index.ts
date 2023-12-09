@@ -42,4 +42,4 @@ class RootStore {
   }
 }
 
-export const useStore = new RootStore()
+export const Store = new RootStore()

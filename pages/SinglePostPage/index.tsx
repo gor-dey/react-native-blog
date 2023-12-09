@@ -1,5 +1,5 @@
-import { SinglePostWidget } from 'widgets/SinglePostWidget'
+import { SinglePost } from '@widgets'
 
 export const SinglePostPage = () => {
-  return <SinglePostWidget />
+  return <SinglePost />
 }

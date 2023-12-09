@@ -1,6 +1,6 @@
 import { View, TextInput, TouchableOpacity, Text } from 'react-native'
 import styled from 'styled-components'
-import { blueColor } from '@shared/cssConstants'
+import { blueColor, defaultPadding } from '@shared/cssConstants'
 
 export const Wrapper = styled(View)`
   display: flex;
@@ -23,7 +23,7 @@ export const InputWrapper = styled(View)`
 export const ButtonSubmit = styled(TouchableOpacity)`
   width: 100%;
   background-color: ${blueColor};
-  padding: 16px;
+  padding: ${defaultPadding};
   align-items: center;
   border-radius: 5px;
 `

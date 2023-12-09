@@ -1,3 +1,4 @@
 export * from './AuthWidget'
-export * from './PostsListWidget'
-export * from './PostItemWidget'
+export * from './PostsList'
+export * from './PostListItem'
+export * from './SinglePost'
