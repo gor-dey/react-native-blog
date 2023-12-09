@@ -1,0 +1,17 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@app": ["app/*"],
+      "@pages": ["pages/index.ts"],
+      "@widgets": ["widgets/index.ts"],
+      "@entities": ["entities/index.ts"],
+      "@shared/*": ["shared/*"],
+
+      "@assets": ["assets/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}
