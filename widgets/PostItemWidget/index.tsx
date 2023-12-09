@@ -1,44 +1,11 @@
 import { Id } from '@shared/types'
-import { View, Text, Image } from 'react-native'
-import styled from 'styled-components'
-import { Wrapper } from 'widgets/AuthWidget/style'
+import { Text, Image } from 'react-native'
+import { CardWrapper, TextFlex, Title } from './style'
 
 type Prop = {
   id: Id
   title: string
 }
-
-const CardWrapper = styled(View)`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
-  justify-content: start;
-  border-radius: 11px;
-  gap: 10px;
-  border: 1px solid #e5e5e5;
-
-  overflow: hidden;
-
-  /* shadow-color: #000;
-  shadow-offset: {
-    width: 0;
-    height: 3;
-  }
-  shadow-opacity: 0.27;
-  shadow-radius: 4.65; */
-  elevation: 6;
-`
-
-const TextFlex = styled(View)`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-`
-const Title = styled(Text)`
-  font-weight: 700;
-`
 
 export const PostItemWidget = ({ id, title }: Prop) => {
   return (

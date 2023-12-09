@@ -75,6 +75,7 @@ function RootLayoutNav() {
     <Stack>
       <Stack.Screen name="/" options={{ headerShown: false }} />
       <Stack.Screen name="/list-rout/" options={{ headerShown: false }} />
+      <Stack.Screen name="/list-rout/[id]" options={{ headerShown: false }} />
     </Stack>
   )
 }
