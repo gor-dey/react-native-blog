@@ -2,9 +2,9 @@ import { Store } from '@shared/store'
 import { FlatList, RefreshControl, TouchableOpacity, View } from 'react-native'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { PostItem } from '@widgets'
 import styled from 'styled-components'
 import { Link } from 'expo-router'
+import { PostItem } from '@entities'
 
 const PostWrapper = styled(View)`
   margin-bottom: 10px;

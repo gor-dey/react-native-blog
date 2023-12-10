@@ -1,30 +1,25 @@
-import React, { useEffect } from 'react'
 import { useRoute } from '@react-navigation/native'
 import { Store } from '@shared/store'
-import { Id } from '@shared/types'
-import { ScrollView, Text, Image, RefreshControl } from 'react-native'
-import { PostWrapper, Title } from './style'
+import { Id, PostType } from '@shared/types'
+import { Text, Image } from 'react-native'
 import { imgUrl } from '@shared/utils'
+import { observer } from 'mobx-react-lite'
+import { PostWrapper } from '@shared/styles'
+import { Title } from './style'
+import { LikeButton } from '@entities'
 
-export const SinglePost = () => {
+export const SinglePost = observer(() => {
   const store = Store
   const route = useRoute()
-
   const { id } = route.params as { id: Id }
+  const localPost: PostType | null = store.postsList[id - 1]
 
-  useEffect(() => {
-    store.getPostById(id as Id)
-  }, [id])
+  if (!localPost) {
+    return <Text>Loading...</Text>
+  }
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={store.isLoading}
-          onRefresh={(): Promise<void> => store.getPostById(id)}
-        />
-      }
-    >
+    <>
       <Image
         style={{ width: '100%', height: 300 }}
         source={{
@@ -33,10 +28,22 @@ export const SinglePost = () => {
         resizeMode="cover"
       />
       <PostWrapper>
-        <Title>{store.actualPost?.title}</Title>
-        <Text>{store.actualPost?.body}</Text>
-        <Text>♥ {store.actualPost?.likes}</Text>
+        <Title>{localPost?.title}</Title>
+        <Text>
+          {localPost?.body} Далеко-далеко, за словесными горами в стране гласных
+          и согласных живут рыбные тексты. Пустился пунктуация заманивший ручеек
+          даже послушавшись за? Города до, собрал путь проектах они назад,
+          буквенных пояс коварных рыбного, осталось но. Своих ее вопроса
+          буквоград за рыбными возвращайся по всей заголовок пор толку даль,
+          пояс однажды безорфографичный коварных безопасную текстов, большого,
+          домах не грамматики мир текст родного взобравшись. То гор безопасную
+          на берегу? Своих по всей всемогущая большого курсивных диких собрал
+          послушавшись единственное, образ напоивший знаках! Они жаренные наш
+          выйти. Наш семантика ручеек алфавит даже возвращайся ipsum безопасную
+          имеет предупредила вопроса. Мир, осталось великий.
+        </Text>
+        <LikeButton {...localPost} />
       </PostWrapper>
-    </ScrollView>
+    </>
   )
-}
+})

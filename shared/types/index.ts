@@ -5,7 +5,13 @@ export type PostType = {
   title: string
   body: string
   likes: number
-  answers: { comment: string }[]
 }
 
-export type ApiResponse = PostType | PostType[]
+export type AnswersType = {
+  id: Id
+  postId: Id
+  comment: string
+  username: string
+}
+
+export type ApiResponse = PostType | PostType[] | AnswersType[]
