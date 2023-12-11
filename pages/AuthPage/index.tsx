@@ -1,6 +1,6 @@
+import { AuthTitle } from '@entities'
 import { defaultPadding, redColor } from '@shared/cssConstants'
 import { AuthWidget } from '@widgets'
-import { AuthTitle } from 'entities/AuthTitle'
 import { View } from 'react-native'
 import styled from 'styled-components'
 

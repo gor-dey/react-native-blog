@@ -4,10 +4,9 @@ import { PostWrapper } from '@shared/components'
 import { AnswersType, Id } from '@shared/types'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { Text, ActivityIndicator, View } from 'react-native'
-import { CommentAuthor } from '@entities'
+import { Text, ActivityIndicator } from 'react-native'
+import { AddCommentForm, CommentAuthor } from '@entities'
 import { CommentWrapper, MainText, Title, Date, Flex } from './style'
-import { AddCommentForm } from 'entities/AddCommentForm'
 import { formattedDate } from '@shared/utils'
 
 export const Comments = observer(() => {

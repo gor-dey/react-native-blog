@@ -1,6 +1,5 @@
-import { SinglePost } from '@widgets'
+import { Comments, SinglePost } from '@widgets'
 import { ScrollView } from 'react-native'
-import { Comments } from 'widgets/Comments'
 
 export const SinglePostPage = () => {
   return (
