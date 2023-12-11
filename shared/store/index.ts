@@ -6,8 +6,11 @@ import {
 import { Id, PostType, ApiResponse, AnswersType } from '@shared/types'
 import { makeAutoObservable, runInAction } from 'mobx'
 import { Alert } from 'react-native'
+import { AuthStore } from './AuthStore'
 
 class RootStore {
+  AuthStore = new AuthStore()
+
   postsList: PostType[] = []
   isLoading: boolean = true
   actualPost: PostType | null = null
@@ -25,6 +28,7 @@ class RootStore {
   }
   getComments = async (postId: Id): Promise<void> => {
     runInAction(() => (this.isLoading = true))
+    this.commentsList = [] as AnswersType[]
     try {
       const data: ApiResponse = await getCommentsByPostId(postId)
       runInAction(() => {
@@ -38,6 +42,17 @@ class RootStore {
     } finally {
       runInAction(() => (this.isLoading = false))
     }
+  }
+  addComment = ({ comment }: { comment: string }) => {
+    this.commentsList.unshift({
+      id: this.commentsList.length + 2,
+      postId: this.actualPost?.id || 0,
+      comment: comment,
+      username: this.AuthStore.username
+    })
+  }
+  setLikes = (postId: Id): void => {
+    this.postsList[postId - 1].likes += 1
   }
 
   private fetchData = async (

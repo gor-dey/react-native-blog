@@ -10,8 +10,7 @@ const Wrapper = styled(View)`
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
-  padding-left: ${defaultPadding};
-  padding-right: ${defaultPadding};
+  padding: ${defaultPadding};
 `
 
 export const AuthPage = () => {

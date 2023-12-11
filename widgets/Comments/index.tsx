@@ -1,17 +1,14 @@
 import { useRoute } from '@react-navigation/native'
 import { Store } from '@shared/store'
-import { PostWrapper } from '@shared/styles'
-import { Id } from '@shared/types'
-import { imgUrl } from '@shared/utils'
+import { PostWrapper } from '@shared/components'
+import { AnswersType, Id } from '@shared/types'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { View, Text, Image } from 'react-native'
-import styled from 'styled-components'
-
-const Title = styled(Text)`
-  font-weight: 700;
-  font-size: 16px;
-`
+import { Text, ActivityIndicator, View } from 'react-native'
+import { CommentAuthor } from '@entities'
+import { CommentWrapper, MainText, Title, Date, Flex } from './style'
+import { AddCommentForm } from 'entities/AddCommentForm'
+import { formattedDate } from '@shared/utils'
 
 export const Comments = observer(() => {
   const store = Store
@@ -22,23 +19,23 @@ export const Comments = observer(() => {
     store.getComments(id as Id)
   }, [])
 
+  if (store.isLoading) return <ActivityIndicator size={'large'} />
   if (store.commentsList.length === 0 && !store.isLoading)
     return <Text>Пока ни одного комментария</Text>
   return (
     <PostWrapper>
+      <AddCommentForm />
       <Title>Комментарии:</Title>
-      {store.commentsList.map(comment => {
+      {store.commentsList.map((comment: AnswersType) => {
         return (
-          <View key={comment.id}>
-            <Image
-              source={{ uri: imgUrl }}
-              width={30}
-              height={30}
-              style={{ borderRadius: 30 }}
-            />
-            <Text>{comment.username}</Text>
-            <Text>{comment.comment}</Text>
-          </View>
+          <CommentWrapper key={comment.id}>
+            <Flex>
+              <CommentAuthor username={comment.username} />
+              <Date>{formattedDate}</Date>
+            </Flex>
+
+            <MainText>{comment.comment}</MainText>
+          </CommentWrapper>
         )
       })}
     </PostWrapper>

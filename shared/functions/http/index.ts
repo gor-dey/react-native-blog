@@ -1,10 +1,17 @@
 import { $axios } from '@shared/axios'
-import { AnswersType, ApiResponse, Id } from '@shared/types'
+import { ApiResponse, Id } from '@shared/types'
 import {
   answersEndpoint,
   apiUrl,
   postsEndpoint as postsEndpoint
 } from '@shared/utils'
+
+const axiosConfig = {
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  }
+}
 
 export const getAxiosPosts = async (): Promise<ApiResponse> =>
   await $axios.get(apiUrl + postsEndpoint)

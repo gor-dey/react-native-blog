@@ -21,7 +21,9 @@ export const PostItem = ({ body, title }: Prop) => {
       />
       <TextFlex>
         <Title>{title}</Title>
-        <Text>{body}</Text>
+        <Text numberOfLines={2} ellipsizeMode="tail">
+          {body}
+        </Text>
       </TextFlex>
     </CardWrapper>
   )

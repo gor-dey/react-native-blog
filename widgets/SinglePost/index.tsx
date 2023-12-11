@@ -1,12 +1,12 @@
 import { useRoute } from '@react-navigation/native'
 import { Store } from '@shared/store'
 import { Id, PostType } from '@shared/types'
-import { Text, Image } from 'react-native'
-import { imgUrl } from '@shared/utils'
+import { Text, Image, View, ActivityIndicator } from 'react-native'
+import { fishyText, imgUrl } from '@shared/utils'
 import { observer } from 'mobx-react-lite'
-import { PostWrapper } from '@shared/styles'
-import { Title } from './style'
-import { LikeButton } from '@entities'
+import { PostWrapper } from '@shared/components'
+import { Flex, Title } from './style'
+import { CommentAuthor, LikeButton } from '@entities'
 
 export const SinglePost = observer(() => {
   const store = Store
@@ -15,7 +15,7 @@ export const SinglePost = observer(() => {
   const localPost: PostType | null = store.postsList[id - 1]
 
   if (!localPost) {
-    return <Text>Loading...</Text>
+    return <ActivityIndicator size={'large'} />
   }
 
   return (
@@ -30,19 +30,13 @@ export const SinglePost = observer(() => {
       <PostWrapper>
         <Title>{localPost?.title}</Title>
         <Text>
-          {localPost?.body} Далеко-далеко, за словесными горами в стране гласных
-          и согласных живут рыбные тексты. Пустился пунктуация заманивший ручеек
-          даже послушавшись за? Города до, собрал путь проектах они назад,
-          буквенных пояс коварных рыбного, осталось но. Своих ее вопроса
-          буквоград за рыбными возвращайся по всей заголовок пор толку даль,
-          пояс однажды безорфографичный коварных безопасную текстов, большого,
-          домах не грамматики мир текст родного взобравшись. То гор безопасную
-          на берегу? Своих по всей всемогущая большого курсивных диких собрал
-          послушавшись единственное, образ напоивший знаках! Они жаренные наш
-          выйти. Наш семантика ручеек алфавит даже возвращайся ipsum безопасную
-          имеет предупредила вопроса. Мир, осталось великий.
+          {localPost?.body} {fishyText}
         </Text>
-        <LikeButton {...localPost} />
+
+        <Flex>
+          <CommentAuthor />
+          <LikeButton postId={id as Id} />
+        </Flex>
       </PostWrapper>
     </>
   )

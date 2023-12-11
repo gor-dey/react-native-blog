@@ -1,6 +1,15 @@
-import { AuthPage, ListPage } from '@pages'
+import { observer } from 'mobx-react-lite'
+import { Store } from '@shared/store'
+import { Redirect } from 'expo-router'
 
-export default function () {
-  // return <AuthPage />
-  return <ListPage />
+const Init = () => {
+  const { isAuthenticated } = Store.AuthStore
+
+  if (isAuthenticated) {
+    return <Redirect href={'/list-rout/'} />
+  } else {
+    return <Redirect href={'/auth/'} />
+  }
 }
+
+export default observer(Init)

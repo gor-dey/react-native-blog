@@ -8,9 +8,7 @@
       "@pages": ["pages/index.ts"],
       "@widgets": ["widgets/index.ts"],
       "@entities": ["entities/index.ts"],
-      "@shared/*": ["shared/*"],
-
-      "@assets": ["assets/*"]
+      "@shared/*": ["shared/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

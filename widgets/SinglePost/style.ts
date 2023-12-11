@@ -10,3 +10,9 @@ export const PostWrapper = styled(View)`
   padding-left: ${defaultPadding};
   padding-right: ${defaultPadding};
 `
+export const Flex = styled(View)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`

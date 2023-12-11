@@ -8,13 +8,18 @@ import {
   StyledTextInput,
   Wrapper
 } from './style'
+import { router } from 'expo-router'
+import { observer } from 'mobx-react-lite'
+import { Store } from '@shared/store'
 
 interface FormData {
-  login: string
+  username: string
   password: string
 }
 
-export const AuthWidget = () => {
+export const AuthWidget = observer(() => {
+  const store = Store
+
   const {
     control,
     handleSubmit,
@@ -22,15 +27,15 @@ export const AuthWidget = () => {
     formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
-      login: '',
+      username: '',
       password: ''
     }
   })
 
-  const onSubmit: SubmitHandler<FormData> = data => {
-    console.log(data)
+  const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
     reset()
-    // navigation.navigate('ListPage')
+    store.AuthStore.login(data)
+    router.replace('/list-rout/')
   }
 
   return (
@@ -50,7 +55,7 @@ export const AuthWidget = () => {
               value={value}
             />
           )}
-          name="login"
+          name="username"
         />
 
         <Controller
@@ -72,10 +77,12 @@ export const AuthWidget = () => {
         />
       </InputWrapper>
 
-      {(errors.login || errors.password) && <Text>Введите имя и пароль!</Text>}
+      {(errors.username || errors.password) && (
+        <Text>Введите имя и пароль!</Text>
+      )}
       <ButtonSubmit onPress={handleSubmit(onSubmit)}>
         <ButtonText>Войти</ButtonText>
       </ButtonSubmit>
     </Wrapper>
   )
-}
+})
