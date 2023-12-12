@@ -8,7 +8,7 @@ type Prop = {
   username?: string
 }
 
-export const CommentAuthor = observer(({ username }: Prop) => {
+export const CommentAuthor = observer(({ username }: Readonly<Prop>) => {
   const store = Store
   return (
     <Wrapper>
@@ -18,7 +18,7 @@ export const CommentAuthor = observer(({ username }: Prop) => {
         height={30}
         style={{ borderRadius: 30 }}
       />
-      <AuthorName>{username || store.AuthStore.username}</AuthorName>
+      <AuthorName>{username ?? store.AuthStore.username}</AuthorName>
     </Wrapper>
   )
 })

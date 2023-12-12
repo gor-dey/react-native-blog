@@ -1,3 +1,5 @@
+export { postLogin } from './login'
+
 import { $axios } from '@shared/axios'
 import { ApiResponse, Id } from '@shared/types'
 import {

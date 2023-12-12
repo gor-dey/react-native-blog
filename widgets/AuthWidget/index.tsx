@@ -27,15 +27,30 @@ export const AuthWidget = observer(() => {
     formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
-      username: '',
-      password: ''
+      username: 'mockUser',
+      password: 'mockPassword'
     }
   })
 
-  const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    reset()
-    store.AuthStore.login(data)
-    router.replace('/list-rout/')
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    try {
+      await store.AuthStore.login(data)
+
+      // Check if authentication was successful
+      if (store.AuthStore.isAuthenticated) {
+        router.replace('/list-rout/')
+      } else {
+        console.log('Login failed')
+        alert(
+          'Неверные логин или пароль. Попробуйте в этот раз ничего не вводить и довериться defaultValue =)'
+        )
+      }
+    } catch (error) {
+      console.log(error)
+      alert('An error occurred during login.')
+    } finally {
+      reset()
+    }
   }
 
   return (

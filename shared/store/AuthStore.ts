@@ -1,3 +1,4 @@
+import { postLogin } from '@shared/functions'
 import { makeAutoObservable } from 'mobx'
 
 export class AuthStore {
@@ -8,8 +9,14 @@ export class AuthStore {
     makeAutoObservable(this)
   }
 
-  login(data: { username: string }): void {
-    this.username = data.username.toLowerCase().trim()
-    this.isAuthenticated = true
+  async login(data: { username: string; password: string }): Promise<void> {
+    try {
+      const loginResponse = await postLogin(data)
+      this.username = data.username.toLowerCase().trim()
+      this.isAuthenticated = true
+      console.log('Token:', loginResponse.token)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

@@ -18,10 +18,10 @@
     "@react-navigation/native": "^6.0.2",
     "axios": "^1.6.2",
     "expo": "~49.0.18",
-    "expo-font": "~11.4.0",
+    "expo-font": "11.4.0",
     "expo-linking": "~5.0.2",
     "expo-router": "^2.0.0",
-    "expo-splash-screen": "^0.22.0",
+    "expo-splash-screen": "0.20.5",
     "expo-status-bar": "~1.6.0",
     "expo-system-ui": "~2.4.0",
     "expo-web-browser": "~12.3.2",
@@ -51,5 +51,6 @@
   "resolutions": {
     "react-refresh": "~0.14.0"
   },
-  "private": true
+  "private": true,
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }

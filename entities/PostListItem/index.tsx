@@ -7,7 +7,7 @@ type Prop = {
   title: string
 }
 
-export const PostItem = ({ body, title }: Prop) => {
+export const PostItem = ({ body, title }: Readonly<Prop>) => {
   return (
     <CardWrapper>
       <Image

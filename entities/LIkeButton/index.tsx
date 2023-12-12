@@ -14,8 +14,9 @@ const LikesCount = styled(Text)`
   font-size: 20px;
   font-weight: 600;
 `
+type Props = { postId: Id }
 
-export const LikeButton = observer(({ postId }: { postId: Id }) => {
+export const LikeButton = observer(({ postId }: Readonly<Props>) => {
   const store = Store
   const localPost: PostType | null = store.postsList[postId - 1]
 
